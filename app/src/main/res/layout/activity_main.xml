@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2">
-
         <TextView
+            android:id="@+id/donnees_txtview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="text"
@@ -27,34 +27,43 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/app_id_edittxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="APP_ID"/>
         <EditText
+            android:id="@+id/local_edittxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="LOCALE"/>
         <EditText
+            android:id="@+id/word_edittxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="WORD"/>
         <EditText
+            android:id="@+id/frequency_edittxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="FREQUENCY"/>
+        
+        <Button
+            android:id="@+id/ajouter_btn"
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:text="Ajouter"/>
+        <Button
+            android:id="@+id/supprimer_ligne_btn"
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:text="Supprimer ligne"/>
+
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-
-
-
+   
+    
 </LinearLayout>
 
 
