@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.UserDictionary;
@@ -44,18 +45,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String[] Projection =
                 {
-                        UserDictionary.Words._ID,
-                        UserDictionary.Words.WORD,
-                        UserDictionary.Words.LOCALE,
-                        UserDictionary.Words.FREQUENCY
+                    UserDictionary.Words.APP_ID,
+                    UserDictionary.Words.WORD,
+                    UserDictionary.Words.LOCALE,
+                    UserDictionary.Words.FREQUENCY
                 };
         String selection = null;
-        String[] selectionArgs = null;
-        String orderBy = UserDictionary.Words._ID;
+        String[] selectionArgs = {""};
+        selectionArgs[0] = "";
+        String orderBy = UserDictionary.Words.FREQUENCY;
         ContentResolver contentResolver = getContentResolver();
 
         Cursor cursor = contentResolver.query(UserDictionary.Words.CONTENT_URI,
-                Projection, selection, selectionArgs, orderBy);
+                Projection,
+                selection,
+                selectionArgs,
+                orderBy);
 
         if(cursor != null && cursor.getCount()> 0){
 
@@ -78,10 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()) {
 
             case R.id.ajouter_btn:
-                //Pour insérer des données dans le dictionnaire
-                //Defines a new Uri object that receives the result of the insertion
                 Uri newUri;
-
                 ContentValues newValues = new ContentValues();
 
                 newValues.put(UserDictionary.Words.APP_ID, appIdEditTxt.getText().toString());
@@ -94,15 +96,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         newValues                          // the values to insert
                 );
                 Toast.makeText(this, "Uri = " + newUri, Toast.LENGTH_LONG).show();
-
-                //To reload the activity
                 finish();
                 startActivity(getIntent());
                 break;
 
 
             case R.id.supprimer_ligne_btn:
-                //Pour delete les données dans le dictionnaire
 
                 String selection = UserDictionary.Words.FREQUENCY + " = ?";
                 String[] selectionArgs = {"200"} ;
