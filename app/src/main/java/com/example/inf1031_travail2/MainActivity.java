@@ -45,14 +45,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String[] Projection =
                 {
-                    UserDictionary.Words.APP_ID,
+                    UserDictionary.Words._ID,
                     UserDictionary.Words.WORD,
                     UserDictionary.Words.LOCALE,
                     UserDictionary.Words.FREQUENCY
                 };
         String selection = null;
-        String[] selectionArgs = {""};
-        selectionArgs[0] = "";
+        String[] selectionArgs = null;
+        //selectionArgs[0] = "";
         String orderBy = UserDictionary.Words.FREQUENCY;
         ContentResolver contentResolver = getContentResolver();
 
@@ -102,9 +102,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             case R.id.supprimer_ligne_btn:
-
-                String selection = UserDictionary.Words.FREQUENCY + " = ?";
-                String[] selectionArgs = {"200"} ;
+             if(!appIdEditTxt.getText().toString().isEmpty() ) {
+                String selection = UserDictionary.Words._ID + " = ?";
+                String[] selectionArgs = {appIdEditTxt.getText().toString()} ;
 
                 int numberDeleted = 0;
                 numberDeleted = getContentResolver().delete(
@@ -112,9 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Toast.makeText(this, "row matching deleted = " + numberDeleted, Toast.LENGTH_LONG).show();
                 finish();
-                startActivity(getIntent());
+                startActivity(getIntent());}else Toast.makeText(this, "Veillez remplir App_ID (SUPRIMER)", Toast.LENGTH_LONG).show();
                 break;
-
         }
 
 
