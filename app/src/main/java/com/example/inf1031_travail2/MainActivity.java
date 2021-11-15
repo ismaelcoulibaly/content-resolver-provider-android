@@ -83,6 +83,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()) {
 
             case R.id.ajouter_btn:
+
+                if(!
+                        (   wordEditTxt.getText().toString().trim().isEmpty()||
+                        frequencyEditTxt.getText().toString().trim().isEmpty()||
+                        localeEditTxt.getText().toString().trim().isEmpty()) ) {
                 Uri newUri;
                 ContentValues newValues = new ContentValues();
 
@@ -97,7 +102,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 );
                 Toast.makeText(this, "Uri = " + newUri, Toast.LENGTH_LONG).show();
                 finish();
-                startActivity(getIntent());
+                startActivity(getIntent());}
+                else Toast.makeText(this, "Veillez  les champs WORD,FREQUENCY ou LOCAL   ", Toast.LENGTH_LONG).show();
                 break;
 
 
